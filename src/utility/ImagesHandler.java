@@ -59,7 +59,7 @@ public class ImagesHandler {
     /*
     * @Purpose: save the image and return its path.
      */
-    private String saveImage(String sourceFilePath) {
+    public String saveImage(String sourceFilePath) {
         //First it validates the size of the file
         String alteredImage = this.validateImageSize(sourceFilePath);
         File sourceFile = new File(alteredImage);

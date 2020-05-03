@@ -34,6 +34,8 @@ public class FeesDaoImpl implements FeesDao {
             rs = pst.executeQuery();
 
         } catch (SQLException se) {
+            System.err.println(se.getMessage());
+            se.printStackTrace();
 
         }
         return rs;
@@ -60,8 +62,8 @@ public class FeesDaoImpl implements FeesDao {
             return pst.executeUpdate();
 
         } catch (SQLException se) {
+            System.err.println(se.getMessage());
             se.printStackTrace();
-            System.out.println(se.getMessage());
         }
         return 0;
 
@@ -86,7 +88,7 @@ public class FeesDaoImpl implements FeesDao {
             return pst.executeUpdate();
 
         } catch (SQLException se) {
-            System.out.println(se.getMessage());
+            System.err.println(se.getMessage());
             se.printStackTrace();
         }
         return 0;
@@ -105,6 +107,8 @@ public class FeesDaoImpl implements FeesDao {
             return pst.executeUpdate();
 
         } catch (SQLException se) {
+            System.err.println(se.getMessage());
+            se.printStackTrace();
         }
         return 0;
 
@@ -142,6 +146,8 @@ public class FeesDaoImpl implements FeesDao {
 
             }
         } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+            ex.printStackTrace();
         }
 
         return fees;
@@ -164,8 +170,8 @@ public class FeesDaoImpl implements FeesDao {
             rs = pst.executeQuery();
 
         } catch (SQLException se) {
-            System.out.println("Exception in Crud of Fees Dao Impl in getRecordForReport() method");
-            System.out.println(se.getMessage());
+            System.err.println(se.getMessage());
+            se.printStackTrace();
         }
         return rs;
 
@@ -192,6 +198,7 @@ public class FeesDaoImpl implements FeesDao {
                 feesRecord.add(fees);
             }
         } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
             ex.printStackTrace();
         }
         return feesRecord;

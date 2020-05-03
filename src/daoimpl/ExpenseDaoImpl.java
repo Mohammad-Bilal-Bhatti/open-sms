@@ -44,6 +44,7 @@ public class ExpenseDaoImpl implements ExpenseDao {
 
             }
         } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
             ex.printStackTrace();
 
         }
@@ -67,6 +68,7 @@ public class ExpenseDaoImpl implements ExpenseDao {
             pst.setString(7, expense.getCreatedDate());
             return pst.executeUpdate();
         } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
             ex.printStackTrace();
 
         }
@@ -90,6 +92,7 @@ public class ExpenseDaoImpl implements ExpenseDao {
             pst.setInt(7, expense.getExpenseId());
             return pst.executeUpdate();
         } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
             ex.printStackTrace();
 
         }
@@ -107,6 +110,7 @@ public class ExpenseDaoImpl implements ExpenseDao {
             pst.setInt(4, expense.getExpenseId());
             return pst.executeUpdate();
         } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
             ex.printStackTrace();
         }
 
@@ -136,6 +140,7 @@ public class ExpenseDaoImpl implements ExpenseDao {
                 expense.setExpenseType(type);
             }
         } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
             ex.printStackTrace();
 
         }
@@ -161,6 +166,7 @@ public class ExpenseDaoImpl implements ExpenseDao {
                 dailyExpenses.add(dailyExpense);
             }
         } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
             ex.printStackTrace();
 
         }
@@ -195,6 +201,7 @@ public class ExpenseDaoImpl implements ExpenseDao {
                 monthlyExpenses.add(monthlyExpense);
             }
         } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
             ex.printStackTrace();
 
         }
@@ -224,6 +231,7 @@ public class ExpenseDaoImpl implements ExpenseDao {
                 ownerExpenses.add(ownerExpense);
             }
         } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
             ex.printStackTrace();
 
         }
@@ -243,6 +251,7 @@ public class ExpenseDaoImpl implements ExpenseDao {
             pst.setString(7, dailyExpense.getCreatedDate());
             return pst.executeUpdate();
         } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
             ex.printStackTrace();
 
         }
@@ -267,6 +276,7 @@ public class ExpenseDaoImpl implements ExpenseDao {
             pst.setString(8, monthlyExpense.getCreatedDate());
             return pst.executeUpdate();
         } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
             ex.printStackTrace();
 
         }
@@ -286,6 +296,7 @@ public class ExpenseDaoImpl implements ExpenseDao {
             pst.setString(7, ownerExpense.getCreatedDate());
             return pst.executeUpdate();
         } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
             ex.printStackTrace();
 
         }
@@ -304,6 +315,7 @@ public class ExpenseDaoImpl implements ExpenseDao {
             pst.setInt(6, dailyExpense.getExpenseId());
             return pst.executeUpdate();
         } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
             ex.printStackTrace();
 
         }
@@ -327,6 +339,7 @@ public class ExpenseDaoImpl implements ExpenseDao {
             pst.setInt(7, monthlyExpense.getExpenseId());
             return pst.executeUpdate();
         } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
             ex.printStackTrace();
 
         }
@@ -344,6 +357,7 @@ public class ExpenseDaoImpl implements ExpenseDao {
             pst.setString(5, ownerExpense.getModifiedDate());
             return pst.executeUpdate();
         } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
             ex.printStackTrace();
 
         }
@@ -365,6 +379,7 @@ public class ExpenseDaoImpl implements ExpenseDao {
                 break;
             }
         } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
             ex.printStackTrace();
 
         }
@@ -386,6 +401,7 @@ public class ExpenseDaoImpl implements ExpenseDao {
                 break;
             }
         } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
             ex.printStackTrace();
 
         }
@@ -407,6 +423,7 @@ public class ExpenseDaoImpl implements ExpenseDao {
                 break;
             }
         } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
             ex.printStackTrace();
 
         }
@@ -441,6 +458,7 @@ public class ExpenseDaoImpl implements ExpenseDao {
             return rs = pst.executeQuery();
         } catch (SQLException sqle) {
             System.err.println(sqle.getMessage());
+            sqle.printStackTrace();
         }
 
         return rs;

@@ -29,6 +29,7 @@ public class SystemDaoImpl implements SystemDao{
                 return true;
             }
         }catch(SQLException ex){
+            System.err.println(ex.getMessage());
             ex.printStackTrace();
         }
         return false;
@@ -42,6 +43,7 @@ public class SystemDaoImpl implements SystemDao{
             pst.setString(2,DateFormatter.formatDate(new Date()));
             return pst.executeUpdate();
         }catch(SQLException ex){
+            System.err.println(ex.getMessage());
             ex.printStackTrace();
         }
        return 0;

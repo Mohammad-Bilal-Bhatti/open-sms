@@ -43,6 +43,8 @@ public class CourseDaoImpl implements CourseDao {
                 courses.add(course);
             }
         } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+            ex.printStackTrace();
         }
 
         return courses;
@@ -65,7 +67,8 @@ public class CourseDaoImpl implements CourseDao {
             pst.setString(6, course.getCreatedDate());
             return pst.executeUpdate();
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            System.err.println(ex.getMessage());
+            ex.printStackTrace();
         }
 
         return 0;
@@ -88,7 +91,8 @@ public class CourseDaoImpl implements CourseDao {
             pst.setInt(6,course.getCourseId());
             return pst.executeUpdate();
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            System.err.println(ex.getMessage());
+            ex.printStackTrace();
         }
 
         return 0;
@@ -105,6 +109,8 @@ public class CourseDaoImpl implements CourseDao {
             pst.setInt(5, course.getCourseId());
             return pst.executeUpdate();
         } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+            ex.printStackTrace();
         }
 
         return 0;
@@ -128,6 +134,8 @@ public class CourseDaoImpl implements CourseDao {
                 course.setMainCourse(main_course);
             }
         } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+            ex.printStackTrace();
         }
 
         return course;
@@ -145,7 +153,8 @@ public class CourseDaoImpl implements CourseDao {
                 mainCourse.setCourseDuration(rs.getString("duration"));
             }
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            System.err.println(ex.getMessage());
+            ex.printStackTrace();
         }
         return mainCourse;
     }
@@ -167,6 +176,8 @@ public class CourseDaoImpl implements CourseDao {
                 }
         }
         catch(SQLException ex){
+            System.err.println(ex.getMessage());
+            ex.printStackTrace();
         }
         return parentCourses;
     }

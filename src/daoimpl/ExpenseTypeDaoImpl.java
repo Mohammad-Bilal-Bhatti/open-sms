@@ -35,6 +35,7 @@ public class ExpenseTypeDaoImpl implements ExpenseTypeDao {
                 expenseTypes.add(expense);
             }
         } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
             ex.printStackTrace();
         }
 
@@ -51,6 +52,7 @@ public class ExpenseTypeDaoImpl implements ExpenseTypeDao {
             pst.setString(4, expenseType.getCreatedDate());
             return pst.executeUpdate();
         } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
             ex.printStackTrace();
         }
 
@@ -67,6 +69,7 @@ public class ExpenseTypeDaoImpl implements ExpenseTypeDao {
             pst.setInt(4, expenseType.getExpenseTypeId());
             return pst.executeUpdate();
         } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
             ex.printStackTrace();
         }
 
@@ -83,6 +86,7 @@ public class ExpenseTypeDaoImpl implements ExpenseTypeDao {
             pst.setInt(4, expenseType.getExpenseTypeId());
             return pst.executeUpdate();
         } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
             ex.printStackTrace();
         }
 
@@ -103,6 +107,7 @@ public class ExpenseTypeDaoImpl implements ExpenseTypeDao {
                 expenseType.setExpenseTitle(rs.getString("exp_type_title"));
             }
         } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
             ex.printStackTrace();
         }
 
@@ -123,6 +128,7 @@ public class ExpenseTypeDaoImpl implements ExpenseTypeDao {
                 break;
             }
         } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
             ex.printStackTrace();
         }
         return expenseTypeBean;

@@ -30,7 +30,8 @@ public class StudentDaoImpl implements StudentDao {
             rs = pst.executeQuery();
 
         } catch (SQLException se) {
-
+            System.err.print(se.getMessage());
+            se.printStackTrace();
         }
 
         return rs;
@@ -78,8 +79,8 @@ public class StudentDaoImpl implements StudentDao {
             return pst.executeUpdate();
 
         } catch (SQLException se) {
-            se.printStackTrace();
             System.out.println(se.getMessage());
+            se.printStackTrace();
         }
         return 0;
 
@@ -143,6 +144,8 @@ public class StudentDaoImpl implements StudentDao {
             return pst.executeUpdate();
 
         } catch (SQLException se) {
+            System.err.println(se.getMessage());
+            se.printStackTrace();
         }
         return 0;
     }
@@ -188,7 +191,8 @@ public class StudentDaoImpl implements StudentDao {
 
             }
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            System.err.println(ex.getMessage());
+            ex.printStackTrace();
         }
 
         return student;

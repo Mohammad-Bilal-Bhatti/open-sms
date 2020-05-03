@@ -36,6 +36,7 @@ public class BatchDaoImpl implements BatchDao{
             }
         }
         catch(SQLException ex){
+            System.err.println(ex.getMessage());
             ex.printStackTrace();
         }
         
@@ -53,6 +54,7 @@ public class BatchDaoImpl implements BatchDao{
              return pst.executeUpdate();
         }
         catch(SQLException ex){
+            System.err.println(ex.getMessage());
             ex.printStackTrace();
         }
         
@@ -69,7 +71,11 @@ public class BatchDaoImpl implements BatchDao{
                pst.setInt(4, batch.getBatchId());
                return pst.executeUpdate();
         }
-        catch(SQLException ex){}
+        catch(SQLException ex){
+            System.err.println(ex.getMessage());
+            ex.printStackTrace();
+        
+        }
         
         return 0;
     }
@@ -84,7 +90,11 @@ public class BatchDaoImpl implements BatchDao{
              pst.setInt(4, batch.getBatchId());
              return pst.executeUpdate();
         }
-        catch(SQLException ex){}
+        catch(SQLException ex){
+            System.err.println(ex.getMessage());
+            ex.printStackTrace();
+        
+        }
                 
         return 0;
     }
@@ -103,7 +113,11 @@ public class BatchDaoImpl implements BatchDao{
                 batch.setBatchName(rs.getString("batch_title"));
             }
         }
-        catch(SQLException ex){}
+        catch(SQLException ex){
+            System.err.println(ex.getMessage());
+            ex.printStackTrace();
+        
+        }
         
         return batch;
     }

@@ -36,6 +36,7 @@ public class RolePermissionDaoImpl implements RolePermissionDao {
                 permissions.add(permission);
             }
         } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
             ex.printStackTrace();
         }
 
@@ -57,6 +58,7 @@ public class RolePermissionDaoImpl implements RolePermissionDao {
                 assginPermissions.add(permission);
             }
         } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
             ex.printStackTrace();
         }
 
@@ -78,6 +80,7 @@ public class RolePermissionDaoImpl implements RolePermissionDao {
                 unAssginPermissions.add(permission);
             }
         } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
             ex.printStackTrace();
         }
 
@@ -97,6 +100,7 @@ public class RolePermissionDaoImpl implements RolePermissionDao {
                 check = pst.executeUpdate();
             }
         } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
             ex.printStackTrace();
         }
         return check;
@@ -115,6 +119,7 @@ public class RolePermissionDaoImpl implements RolePermissionDao {
                 check = pst.executeUpdate();
             }
         } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
             ex.printStackTrace();
         }
         return check;
@@ -134,6 +139,7 @@ public class RolePermissionDaoImpl implements RolePermissionDao {
                 break;
             }
         } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
             ex.printStackTrace();
         }
 

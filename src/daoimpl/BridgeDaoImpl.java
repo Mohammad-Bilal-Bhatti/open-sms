@@ -34,6 +34,8 @@ public class BridgeDaoImpl implements BridgeDao{
 
             
         } catch (SQLException se) {
+            System.err.println(se.getMessage());
+            se.printStackTrace();
             
         }        
         return rs;       
@@ -59,8 +61,8 @@ public class BridgeDaoImpl implements BridgeDao{
             return pst.executeUpdate();
 
         } catch (SQLException se) {
+            System.err.println(se.getMessage());
             se.printStackTrace();
-            System.out.println(se.getMessage());
         }
         return 0;
 
@@ -87,7 +89,7 @@ public class BridgeDaoImpl implements BridgeDao{
             return pst.executeUpdate();
 
         } catch (SQLException se) {
-            System.out.println(se.getMessage());
+            System.err.println(se.getMessage());
             se.printStackTrace();
         }
         return 0;
@@ -106,7 +108,7 @@ public class BridgeDaoImpl implements BridgeDao{
             return pst.executeUpdate();
 
         } catch (SQLException se) {
-            System.out.println(se.getMessage());
+            System.err.println(se.getMessage());
             se.printStackTrace();
             return 0;
         }    

@@ -30,7 +30,8 @@ public class FeeTypeDaoImpl implements FeeTypeDao {
            
             
         } catch (SQLException se) {
-            
+            System.err.println(se.getMessage());
+            se.printStackTrace();
         }        
         return rs;       
         
@@ -51,8 +52,8 @@ public class FeeTypeDaoImpl implements FeeTypeDao {
             return pst.executeUpdate();
 
         } catch (SQLException se) {
+            System.err.println(se.getMessage());
             se.printStackTrace();
-            System.out.println(se.getMessage());
         }
         return 0;
        
@@ -74,7 +75,7 @@ public class FeeTypeDaoImpl implements FeeTypeDao {
             return pst.executeUpdate();
 
         } catch (SQLException se) {
-            System.out.println(se.getMessage());
+            System.err.println(se.getMessage());
             se.printStackTrace();
         }
         return 0;
@@ -94,6 +95,8 @@ public class FeeTypeDaoImpl implements FeeTypeDao {
             return pst.executeUpdate();
 
         } catch (SQLException se) {
+            System.err.println(se.getMessage());
+            se.printStackTrace();
         }
         return 0;
          
@@ -118,7 +121,11 @@ public class FeeTypeDaoImpl implements FeeTypeDao {
                 feesType.setModifiedBy(rs.getInt("modified_by"));
                 feesType.setModifiedDate(rs.getString("modified_date"));
             }
-        }catch(SQLException se){}
+        }catch(SQLException se){
+            System.err.println(se.getMessage());
+            se.printStackTrace();
+        
+        }
         
         return feesType;
     }

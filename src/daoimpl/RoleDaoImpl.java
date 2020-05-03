@@ -35,6 +35,8 @@ public class RoleDaoImpl implements RoleDao {
                 roles.add(role);
             }
         } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+            ex.printStackTrace();
         }
         return roles;
     }
@@ -49,6 +51,7 @@ public class RoleDaoImpl implements RoleDao {
             pst.setString(4, role.getCreatedDate());
             return pst.executeUpdate();
         } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
             ex.printStackTrace();
         }
 
@@ -65,6 +68,7 @@ public class RoleDaoImpl implements RoleDao {
             pst.setInt(4, role.getRoleId());
             return pst.executeUpdate();
         } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
             ex.printStackTrace();
         }
 
@@ -81,6 +85,7 @@ public class RoleDaoImpl implements RoleDao {
             pst.setInt(4, role.getRoleId());
             return pst.executeUpdate();
         } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
             ex.printStackTrace();
         }
 
@@ -101,6 +106,7 @@ public class RoleDaoImpl implements RoleDao {
                 role.setRole(rs.getString("role"));
             }
         } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
             ex.printStackTrace();
         }
 

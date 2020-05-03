@@ -31,6 +31,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
             rs = pst.executeQuery();
             
         } catch (SQLException se) {
+            System.err.println(se.getMessage());
+            se.printStackTrace();
 
         }
         return rs;
@@ -75,8 +77,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
             return pst.executeUpdate();
 
         } catch (SQLException se) {
+            System.err.println(se.getMessage());
             se.printStackTrace();
-            System.out.println(se.getMessage());
         }
         return 0;
 
@@ -118,7 +120,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
             return pst.executeUpdate();
 
         } catch (SQLException se) {
-            System.out.println(se.getMessage());
+            System.err.println(se.getMessage());
             se.printStackTrace();
         }
         return 0;
@@ -136,6 +138,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
             return pst.executeUpdate();
 
         } catch (SQLException se) {
+            System.err.println(se.getMessage());
+            se.printStackTrace();
         }
         return 0;
     }
@@ -175,6 +179,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
                 employee.setModifiedDate(rs.getString("modified_date"));
             }
         } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
             ex.printStackTrace();
         }
 
@@ -194,6 +199,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
             }
 
         } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
             ex.printStackTrace();
         }
         return employee;
@@ -214,6 +220,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
                 owners.add(owner);
             }
         } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
             ex.printStackTrace();
         }
         return owners;
@@ -240,6 +247,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
                 break;
             }
         } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
             ex.printStackTrace();
         }
 
@@ -253,7 +261,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
             pst.setInt(2, user.getEmpId());
             return pst.executeUpdate();
         } catch (SQLException ex) {
-           ex.printStackTrace();
+            System.err.println(ex.getMessage());
+            ex.printStackTrace();
         }
         return 0;
     }
@@ -274,6 +283,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
                 return user;
             }
         } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
             ex.printStackTrace();
         }
         return user;

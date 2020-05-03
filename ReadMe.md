@@ -4,7 +4,7 @@ This project is specifically designed and developed for managing small to medium
 
 This project was developed back in Nov, 2018 with the mutual contribution and with intention that it will be our first real-world project, and will be deployed in institure of Gambat, Pakistan. This project was completed in Middle of Feb, 2019 and further forwarded to deployment.
 
-> Note: The project source is not released completely yet, it will take 15 days to uploaded it completely 😁.
+> Note: The Source in Now Completely Uploaded 😁. TODO: Bugs needs to resolve only...
 
 ## How to Run
 

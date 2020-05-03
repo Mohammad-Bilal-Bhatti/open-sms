@@ -12,6 +12,8 @@ This project was developed back in Nov, 2018 with the mutual contribution and wi
 - Open project in Netbeans 📦.
 - Build and run the project 😊.
 
+> Note: Import the db schema present in /schemas directory using sqlite client: DB-Browser 
+
 ## Technologies Used
 
 - Java | Language

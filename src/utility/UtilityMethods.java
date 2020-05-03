@@ -23,6 +23,8 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import net.proteanit.sql.DbUtils;
+import config.Config;
+
 /**
  *
  * @author Javed Ali Dahri
@@ -71,11 +73,11 @@ public class UtilityMethods {
         InputStream is = null;
         OutputStream os = null;
         try {
-            File f = new File("star_academy_db.sqlite");
-            new File("D:\\backup").mkdir();
+            File f = new File(Config.DB_FILE_NAME);
+            new File(Config.DB_BACKUP_DIR).mkdir();
 
             is = new FileInputStream(f);
-            os = new FileOutputStream(new File("D:\\backup\\star_academy_db.sqlite"));
+            os = new FileOutputStream(new File(Config.DB_BACKUP_DIR+ "\\" + Config.DB_FILE_NAME));
             byte[] buffer = new byte[1024];
             int length;
             while ((length = is.read(buffer)) > 0) {

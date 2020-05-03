@@ -40,7 +40,6 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         logoutlbl = new javax.swing.JLabel();
         passchangelbl = new javax.swing.JLabel();
         studentlbl = new javax.swing.JLabel();
@@ -58,7 +57,6 @@ public class MainFrame extends javax.swing.JFrame {
         usernamelbl = new javax.swing.JLabel();
         userlbl2 = new javax.swing.JLabel();
         bg = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         studentMenuItem = new javax.swing.JMenuItem();
@@ -74,9 +72,6 @@ public class MainFrame extends javax.swing.JFrame {
         PermissionsMenuItem = new javax.swing.JMenuItem();
         RoleMenuItem = new javax.swing.JMenuItem();
         logoutMenuItem = new javax.swing.JMenuItem();
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/staracademy/com/images/background.png"))); // NOI18N
-        jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -222,9 +217,6 @@ public class MainFrame extends javax.swing.JFrame {
 
         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/background.png"))); // NOI18N
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, 1370, 810));
-
-        jLabel4.setText("jLabel4");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 30, -1, -1));
 
         jMenu1.setText("File");
 
@@ -550,8 +542,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel expenselbl;
     private javax.swing.JLabel exptypelbl;
     private javax.swing.JLabel feeslbl;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem logoutMenuItem;
@@ -597,51 +587,51 @@ public class MainFrame extends javax.swing.JFrame {
     private void checkPermissions() {
         List<PermissionBean> permissions = new RolePermissionDaoImpl().getAssignedPermissions(LoginFrame.userBean.getRole());
         for (PermissionBean pb : permissions) {
-            if (pb.getPermission().equals("View Student")) {
+            if (pb.getPermission().equals("student")) {
                 studentlbl.setEnabled(true);
                 studentMenuItem.setEnabled(true);
             }
-            if (pb.getPermission().equals("View Batch")) {
+            if (pb.getPermission().equals("batch")) {
                 batchlbl.setEnabled(true);
                 BatchMenuItem.setEnabled(true);
             }
-            if (pb.getPermission().equals("View Expenses")) {
+            if (pb.getPermission().equals("expenses")) {
                 expenselbl.setEnabled(true);
                 ExpensesMenuItem.setEnabled(true);
             }
-            if (pb.getPermission().equals("View Profit")) {
+            if (pb.getPermission().equals("profit")) {
                 profitlbl.setEnabled(true);
                 ProfitMenuItem.setEnabled(true);
             }
-            if (pb.getPermission().equals("View Employee")) {
+            if (pb.getPermission().equals("employee")) {
                 emplbl.setEnabled(true);
                 EmployeeMenuItem.setEnabled(true);
             }
-            if (pb.getPermission().equals("View Shift")) {
+            if (pb.getPermission().equals("shift")) {
                 shiftlbl.setEnabled(true);
                 ShiftMenuItem.setEnabled(true);
             }
-            if (pb.getPermission().equals("View Expense Type")) {
+            if (pb.getPermission().equals("expenseType")) {
                 exptypelbl.setEnabled(true);
                 ExpenseTypeMenuItem.setEnabled(true);
             }
-            if (pb.getPermission().equals("View Course Assignment")) {
+            if (pb.getPermission().equals("courseAssignment")) {
                 courseassignmentlbl.setEnabled(true);
                 CourseAssignmentMenuItem.setEnabled(true);
             }
-            if (pb.getPermission().equals("View Course")) {
+            if (pb.getPermission().equals("course")) {
                 courselbl.setEnabled(true);
                 CoursesMenuItem.setEnabled(true);
             }
-            if (pb.getPermission().equals("View Fees")) {
+            if (pb.getPermission().equals("fees")) {
                 feeslbl.setEnabled(true);
                 FeesMenuItem.setEnabled(true);
             }
-            if (pb.getPermission().equals("View Permissions")) {
+            if (pb.getPermission().equals("permissions")) {
                 permissionlbl.setEnabled(true);
                 PermissionsMenuItem.setEnabled(true);
             }
-            if (pb.getPermission().equals("View Role")) {
+            if (pb.getPermission().equals("role")) {
                 rolelbl.setEnabled(true);
                 RoleMenuItem.setEnabled(true);
             }

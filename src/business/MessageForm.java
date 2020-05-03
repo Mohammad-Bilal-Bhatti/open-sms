@@ -21,7 +21,7 @@ public class MessageForm extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.header.setText(header);
         this.message.setText(message);
-        iconlbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/staracademy/com/images/" + icon)));
+        iconlbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/" + icon)));
         jLabel2.requestFocus(true);
          jLabel2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {

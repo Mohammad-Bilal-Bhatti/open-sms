@@ -194,7 +194,7 @@ public class LoginFrame extends javax.swing.JFrame {
             login();
         }
         if (!passtxt.getText().equals("")) {
-            eyeicon.setIcon(new ImageIcon(getClass().getResource("/staracademy/com/images/eye_close.png")));
+            eyeicon.setIcon(new ImageIcon(getClass().getResource("/images/eye_close.png")));
         } else {
             eyeicon.setIcon(null);
             passtxt.setEchoChar('\u25cf');
@@ -208,11 +208,11 @@ public class LoginFrame extends javax.swing.JFrame {
     private void eyeiconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eyeiconMouseClicked
         if (eyeicon.getIcon() != null) {
             if (check) {
-                eyeicon.setIcon(new ImageIcon(getClass().getResource("/staracademy/com/images/eye_open.png")));
+                eyeicon.setIcon(new ImageIcon(getClass().getResource("/images/eye_open.png")));
                 passtxt.setEchoChar((char) 0);
                 check = false;
             } else {
-                eyeicon.setIcon(new ImageIcon(getClass().getResource("/staracademy/com/images/eye_close.png")));
+                eyeicon.setIcon(new ImageIcon(getClass().getResource("/images/eye_close.png")));
                 passtxt.setEchoChar('\u25cf');
                 check = true;
             }
@@ -227,8 +227,8 @@ public class LoginFrame extends javax.swing.JFrame {
 
             userBean = new EmployeeDaoImpl().checkLogin(userBean);
             if (userBean != null) {
-//                new MainFrame().setVisible(true);
-//                this.dispose();
+                new MainFrame().setVisible(true);
+                this.dispose();
             } else {
                 new MessageForm("Error", "Wrong username or password", "error.png").setVisible(true);
             }

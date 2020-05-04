@@ -29,7 +29,13 @@ package config;
  */
 public class Config {
     public static final String DB_FILE_NAME = "db.sqlite";
-    public static final String DB_BACKUP_DIR = "d:\\backup";
-    public static final String IMG_DIR = "d:\\PUBLIC";
+    public static final String DB_BACKUP_DIR = "d:\\backup\\sms";
+    public static final String IMG_DIR = "d:\\PUBLIC\\sms\\img";
+    public static final String FILE_CHOOSER_SEARCH_PATH = System.getenv("HOME");
+
+    // Image Related Values.
+    public static final int MAX_IMG_SIZE = 1024 * 3; // ~ 3kb
+    public static final int IMG_WIDTH = 250;
+    public static final int IMG_HEIGHT = 300; 
     
 }

@@ -18,6 +18,7 @@ import java.nio.file.attribute.DosFileAttributes;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import java.util.Date;
+import config.Config;
 
 /**
  *
@@ -30,7 +31,7 @@ public class ImagesHandler {
      */
 
     private final String imgDir;
-    private final int maxSize = 300; // in bytes
+    private final int maxSize = Config.MAX_IMG_SIZE; 
 
     public ImagesHandler(String imgDir) {
         this.imgDir = imgDir;
@@ -136,9 +137,9 @@ public class ImagesHandler {
         File image = new File(imagePath);
         long imageSizeInBytes = image.length();
 
-        //If the image size is greater than 300kb than resize the original image to 250x300px
-        if (imageSizeInBytes / 1024 > maxSize) {
-            return this.resizeImage(imagePath, 250, 300);
+        //If the image size is greater than maxSize than resize the original image to imgWidth x imgHeightpx
+        if (imageSizeInBytes > maxSize) {
+            return this.resizeImage(imagePath, Config.IMG_WIDTH, Config.IMG_HEIGHT);
         }
         return imagePath;
     }

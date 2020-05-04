@@ -23,6 +23,7 @@ import beans.StudentBean;
 import daoimpl.StudentDaoImpl;
 import utility.CustomFileFilter;
 import utility.ImagesHandler;
+import config.Config;
 
 /**
  *
@@ -34,7 +35,7 @@ public class StudentAdmissionFrame extends javax.swing.JFrame {
      * Creates new form StudentAdmissionFrame
      */
     private File imageFile = null;
-    private String searchPath = "C:\\";
+    private String searchPath = Config.FILE_CHOOSER_SEARCH_PATH;
 
     private Color fg_color_on_focus_lost = new Color(153, 153, 153);
     private Font font_on_focus_lost = new Font("Century Gothic", Font.PLAIN, 18);
@@ -45,7 +46,7 @@ public class StudentAdmissionFrame extends javax.swing.JFrame {
     private Border redLineBroder = BorderFactory.createLineBorder(Color.RED, 1);
     private Border noBorder = null;
 
-    private final String studentImgDir = "StudentImages\\";
+    private final String studentImgDir = Config.IMG_DIR;
     private boolean onUpdate = false;
     private Integer sIdOnUpdate;
     private File prevImageFile;

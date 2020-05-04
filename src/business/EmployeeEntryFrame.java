@@ -27,6 +27,7 @@ import daoimpl.EmployeeDaoImpl;
 import daoimpl.RoleDaoImpl;
 import daoimpl.RolePermissionDaoImpl;
 import utility.UtilityMethods;
+import config.Config;
 
 /**
  *
@@ -35,8 +36,8 @@ import utility.UtilityMethods;
 public class EmployeeEntryFrame extends javax.swing.JFrame {
 
     private File imageFile = null;
-    private String searchPath = "C:\\";
-    private final String employeeImgDir = "C:\\EMPLOYEEIMGDIR\\";
+    private String searchPath = Config.FILE_CHOOSER_SEARCH_PATH;
+    private final String employeeImgDir = Config.IMG_DIR;
 
     private Color fg_color_on_focus_lost = new Color(153, 153, 153);
     private Font font_on_focus_lost = new Font("Century Gothic", Font.PLAIN, 18);

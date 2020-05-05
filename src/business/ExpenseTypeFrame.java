@@ -113,7 +113,7 @@ public class ExpenseTypeFrame extends javax.swing.JFrame {
                 addlblMouseClicked(evt);
             }
         });
-        jPanel1.add(addlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 170, 50));
+        jPanel1.add(addlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 170, 170, 50));
 
         updatelbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/updatebtn.png"))); // NOI18N
         updatelbl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -122,7 +122,7 @@ public class ExpenseTypeFrame extends javax.swing.JFrame {
                 updatelblMouseClicked(evt);
             }
         });
-        jPanel1.add(updatelbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 170, 170, 50));
+        jPanel1.add(updatelbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(173, 170, 170, 50));
 
         deletelbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/deletebtn.png"))); // NOI18N
         deletelbl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -131,7 +131,7 @@ public class ExpenseTypeFrame extends javax.swing.JFrame {
                 deletelblMouseClicked(evt);
             }
         });
-        jPanel1.add(deletelbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, -1, -1));
+        jPanel1.add(deletelbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 230, -1, -1));
 
         resetlbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/resetbtn.png"))); // NOI18N
         resetlbl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -140,7 +140,7 @@ public class ExpenseTypeFrame extends javax.swing.JFrame {
                 resetlblMouseClicked(evt);
             }
         });
-        jPanel1.add(resetlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 230, 160, -1));
+        jPanel1.add(resetlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(173, 230, 160, -1));
 
         expenseTypeLabel.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         expenseTypeLabel.setText("Expense Type");
@@ -234,8 +234,8 @@ public class ExpenseTypeFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cutlblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cutlblMouseClicked
-//         new MainFrame().setVisible(true);
-//        this.dispose();
+        new MainFrame().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_cutlblMouseClicked
 
     private void exptypetxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_exptypetxtFocusGained
@@ -364,8 +364,7 @@ public class ExpenseTypeFrame extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        EmployeeBean emp = new EmployeeBean();
-        emp.setEmpId(1);
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new ExpenseTypeFrame().setVisible(true);
@@ -399,13 +398,13 @@ public class ExpenseTypeFrame extends javax.swing.JFrame {
     private void checkPermissions() {
         List<PermissionBean> permissions = new RolePermissionDaoImpl().getAssignedPermissions(LoginFrame.userBean.getRole());
         for (PermissionBean pb : permissions) {
-            if (pb.getPermission().equals("Add Expense Type")) {
+            if (pb.getPermission().equalsIgnoreCase("add")) {
                 addlbl.setVisible(true);
             }
-            if (pb.getPermission().equals("Update Expense Type")) {
+            if (pb.getPermission().equalsIgnoreCase("update")) {
                 updatelbl.setVisible(true);
             }
-            if (pb.getPermission().equals("Delete Expense Type")) {
+            if (pb.getPermission().equalsIgnoreCase("delete")) {
                 deletelbl.setVisible(true);
             }
         }

@@ -32,6 +32,9 @@ import daoimpl.FeesDaoImpl;
 import daoimpl.ShiftDaoImpl;
 import daoimpl.StudentDaoImpl;
 import utility.UtilityMethods;
+import beans.PermissionBean;
+import daoimpl.RolePermissionDaoImpl;
+import java.util.List;
 
 /**
  *
@@ -64,6 +67,9 @@ public class StudentCourseAssignmentFrame extends javax.swing.JFrame {
         bridgeTable.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 16));
         bridgeTableModel = (DefaultTableModel) bridgeTable.getModel();
         refreshBridgeTable();
+        
+        hideAllButtons();
+        checkPermissions();
 
         refershCourseCombo();
         refreshShiftCombo();
@@ -354,8 +360,8 @@ public class StudentCourseAssignmentFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_cross_iconMouseEntered
 
     private void cross_iconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cross_iconMouseClicked
-//        new MainFrame().setVisible(true);
-//        this.dispose();
+        new MainFrame().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_cross_iconMouseClicked
 
     private void studentTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_studentTableMouseClicked
@@ -828,4 +834,27 @@ public class StudentCourseAssignmentFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane studentTableScorllPanel;
     private javax.swing.JLabel updateBtn;
     // End of variables declaration//GEN-END:variables
+
+    private void hideAllButtons() {
+        assignBtn.setVisible(false);
+        updateBtn.setVisible(false);
+        deleteBtn.setVisible(false);
+    }
+
+    private void checkPermissions() {
+        List<PermissionBean> permissions = new RolePermissionDaoImpl().getAssignedPermissions(LoginFrame.userBean.getRole());
+        for (PermissionBean pb : permissions) {
+            if (pb.getPermission().equals("add")) {
+                assignBtn.setVisible(true);
+            }
+            if (pb.getPermission().equals("update")) {
+                updateBtn.setVisible(true);
+            }
+            if (pb.getPermission().equals("delete")) {
+                deleteBtn.setVisible(true);
+            }
+        }
+    }
+
+
 }

@@ -1160,16 +1160,16 @@ public class StudentFeeFrame extends javax.swing.JFrame {
     private void checkPermissions() {
         List<PermissionBean> permissions = new RolePermissionDaoImpl().getAssignedPermissions(LoginFrame.userBean.getRole());
         for (PermissionBean pb : permissions) {
-            if (pb.getPermission().equals("Add Fees")) {
+            if (pb.getPermission().equalsIgnoreCase("add")) {
                 addlbl.setVisible(true);
             }
-            if (pb.getPermission().equals("Update Fees")) {
+            if (pb.getPermission().equalsIgnoreCase("update")) {
                 updatelbl.setVisible(true);
             }
-            if (pb.getPermission().equals("Delete Fees")) {
+            if (pb.getPermission().equalsIgnoreCase("delete")) {
                 resetlbl.setVisible(true);
             }
-            if (pb.getPermission().equals("Print Slip")) {
+            if (pb.getPermission().equalsIgnoreCase("print")) {
                 printSlipBtn.setVisible(true);
             }
 

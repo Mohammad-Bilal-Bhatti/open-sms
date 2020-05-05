@@ -16,9 +16,12 @@ import javax.swing.JOptionPane;
 import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
 import beans.EmployeeBean;
+import beans.PermissionBean;
 import beans.RoleBean;
 import daoimpl.EmployeeDaoImpl;
 import daoimpl.RoleDaoImpl;
+import daoimpl.RolePermissionDaoImpl;
+import java.util.List;
 import utility.UtilityMethods;
 
 /**
@@ -36,7 +39,10 @@ public class EmployeeRecordSelectionFrame extends javax.swing.JFrame {
     public EmployeeRecordSelectionFrame() {
         this.setUndecorated(true);
         initComponents();
-
+        
+        hideAllButtons();
+        checkPermissions();
+        
         table.getTableHeader().setFont(new Font("Dialog", Font.PLAIN, 14));
         tableModel = (DefaultTableModel) table.getModel();
         updateTable();
@@ -351,4 +357,23 @@ public class EmployeeRecordSelectionFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane tableScorllPanel;
     private javax.swing.JLabel updateBtn;
     // End of variables declaration//GEN-END:variables
+  
+    private void hideAllButtons() {
+        deleteBtn.setVisible(false);
+        updateBtn.setVisible(false);
+    }
+
+    private void checkPermissions() {
+        List<PermissionBean> permissions = new RolePermissionDaoImpl().getAssignedPermissions(LoginFrame.userBean.getRole());
+        for (PermissionBean pb : permissions) {
+            if (pb.getPermission().equals("delete")) {
+                deleteBtn.setVisible(true);
+            }
+            if (pb.getPermission().equals("update")) {
+                updateBtn.setVisible(true);
+            }
+
+        }
+    }
+
 }

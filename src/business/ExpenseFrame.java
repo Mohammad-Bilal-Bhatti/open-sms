@@ -693,8 +693,8 @@ public class ExpenseFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void closeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeMouseClicked
-//        new MainFrame().setVisible(true);
-//        this.dispose();
+        new MainFrame().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_closeMouseClicked
 
     private void addlblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addlblMouseClicked
@@ -1180,17 +1180,17 @@ public class ExpenseFrame extends javax.swing.JFrame {
     private void checkPermissions() {
         List<PermissionBean> permissions = new RolePermissionDaoImpl().getAssignedPermissions(LoginFrame.userBean.getRole());
         for (PermissionBean pb : permissions) {
-            if (pb.getPermission().equals("Add Expenses")) {
+            if (pb.getPermission().equalsIgnoreCase("add")) {
                 addlbl.setVisible(true);
                 addlbl1.setVisible(true);
                 addlbl2.setVisible(true);
             }
-            if (pb.getPermission().equals("Update Expenses")) {
+            if (pb.getPermission().equalsIgnoreCase("update")) {
                 updatelbl.setVisible(true);
                 updatelbl1.setVisible(true);
                 updatelbl2.setVisible(true);
             }
-            if (pb.getPermission().equals("Delete Expenses")) {
+            if (pb.getPermission().equalsIgnoreCase("delete")) {
                 deletelbl.setVisible(true);
                 deletelbl1.setVisible(true);
                 deletelbl2.setVisible(true);

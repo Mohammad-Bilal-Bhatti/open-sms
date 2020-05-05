@@ -240,8 +240,8 @@ public class CourseFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void closeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeMouseClicked
-//         new MainFrame().setVisible(true);
-//        this.dispose();
+        new MainFrame().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_closeMouseClicked
 
     private void subcoursetxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_subcoursetxtFocusGained
@@ -432,8 +432,7 @@ public class CourseFrame extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        EmployeeBean emp = new EmployeeBean();
-        emp.setEmpId(1);
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new CourseFrame().setVisible(true);
@@ -470,13 +469,13 @@ public class CourseFrame extends javax.swing.JFrame {
     private void checkPermissions() {
         List<PermissionBean> permissions = new RolePermissionDaoImpl().getAssignedPermissions(LoginFrame.userBean.getRole());
         for (PermissionBean pb : permissions) {
-            if (pb.getPermission().equals("Add Course")) {
+            if (pb.getPermission().equals("add")) {
                 addlbl.setVisible(true);
             }
-            if (pb.getPermission().equals("Update Course")) {
+            if (pb.getPermission().equals("update")) {
                 updatelbl.setVisible(true);
             }
-            if (pb.getPermission().equals("Delete Course")) {
+            if (pb.getPermission().equals("delete")) {
                 deletelbl.setVisible(true);
             }
         }

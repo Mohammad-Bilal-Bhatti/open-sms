@@ -9,7 +9,6 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Toolkit;
-import java.io.File;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
@@ -27,7 +26,7 @@ import daoimpl.EmployeeDaoImpl;
 import daoimpl.RoleDaoImpl;
 import daoimpl.RolePermissionDaoImpl;
 import utility.UtilityMethods;
-import config.Config;
+import business.LoginFrame;
 
 /**
  *
@@ -35,9 +34,6 @@ import config.Config;
  */
 public class EmployeeEntryFrame extends javax.swing.JFrame {
 
-    private File imageFile = null;
-    private String searchPath = Config.FILE_CHOOSER_SEARCH_PATH;
-    private final String employeeImgDir = Config.IMG_DIR;
 
     private Color fg_color_on_focus_lost = new Color(153, 153, 153);
     private Font font_on_focus_lost = new Font("Century Gothic", Font.PLAIN, 18);
@@ -47,7 +43,6 @@ public class EmployeeEntryFrame extends javax.swing.JFrame {
     private Border redLineBroder = BorderFactory.createLineBorder(Color.RED, 1);
     private Border noBorder = null;
 
-    private File prevImageFile;
     private boolean onUpdate;
     private Integer eIdOnUpdate;
 
@@ -113,7 +108,8 @@ public class EmployeeEntryFrame extends javax.swing.JFrame {
         genderGroup.add(maleRadio);
         genderGroup.add(femaleRadio);
         employeeDobField.requestFocus();
-
+        hideAllButtons();
+        checkPermissions();
         addlbl.setEnabled(false);
 
         populateEmployeeRolesCombo();
@@ -159,13 +155,7 @@ public class EmployeeEntryFrame extends javax.swing.JFrame {
         } else {
             femaleRadio.setSelected(true);
         }
-        /*
-        ImagesHandler handler = new ImagesHandler(employeeImgDir);
-        ImageIcon img = handler.loagImage(employee.getPicPath());
-        profileIcon.setIcon(img);
-        imageFile = new File(employee.getPicPath());
-        prevImageFile = new File(employee.getPicPath());
-         */
+
     }
 
     /**
@@ -849,8 +839,8 @@ public class EmployeeEntryFrame extends javax.swing.JFrame {
 
     private void crossBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_crossBtnMouseClicked
         // TODO add your handling code here:
-//        new MainFrame().setVisible(true);
-//        this.dispose();
+        new MainFrame().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_crossBtnMouseClicked
 
     private void employeeSalaryFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_employeeSalaryFieldActionPerformed
@@ -886,7 +876,7 @@ public class EmployeeEntryFrame extends javax.swing.JFrame {
                 employee.setSalType(salaryTypeCombo.getSelectedItem().toString());
                 employee.setSalary(Double.valueOf(employeeSalaryField.getText()));
 
-                if (employeeTypeCombo.getSelectedItem().toString().equalsIgnoreCase("User")) {
+                if (employeeTypeCombo.getSelectedItem().toString().equalsIgnoreCase("user")) {
                     employee.setUserName(userNameField.getText());
                     String password = userPasswordField.getText();
                     employee.setPassword(password);
@@ -899,16 +889,11 @@ public class EmployeeEntryFrame extends javax.swing.JFrame {
                     employee.setAnswer("");
                 }
 
-                /*
-                ImagesHandler imgHandler = new ImagesHandler(this.employeeImgDir);
-                //Real Path where the image is currently saved
-                String realImagePath = imgHandler.addImage(imageFile.getAbsolutePath(), employee);
-                employee.setPicPath(realImagePath);
-                 */
+
                 employee.setPicPath("");
 
-                employee.setCreatedBy(41);
-                employee.setCreatedDate(new Date() + "");
+                employee.setCreatedBy(LoginFrame.userBean.getEmpId());
+                employee.setCreatedDate(DateFormatter.formatDate(new Date()));
 
                 // How to manage created by and modified by
                 int what = new EmployeeDaoImpl().addEmployee(employee);
@@ -918,7 +903,7 @@ public class EmployeeEntryFrame extends javax.swing.JFrame {
                 }
             }
         } else {
-//            new MessageForm("Error", "Record is duplicate", "error.png").setVisible(true);
+          new MessageForm("Error", "Record is duplicate", "error.png").setVisible(true);
         }
     }//GEN-LAST:event_addlblMouseClicked
 
@@ -1233,31 +1218,21 @@ public class EmployeeEntryFrame extends javax.swing.JFrame {
                     employee.setqId("");
                     employee.setAnswer("");
                 }
-                /*            
-            ImagesHandler imgHandler = new ImagesHandler(this.employeeImgDir);
-            //Delete the previous image file...
-            //If User does not change the picture...
-            if(!prevImageFile.getAbsolutePath().equals(imageFile.getAbsolutePath())){
-                imgHandler.deleteImage(prevImageFile.getAbsolutePath());
-            }
-            //Real Path where the image is currently saved
-            String realImagePath = imgHandler.addImage(imageFile.getAbsolutePath(), employee);
-            employee.setPicPath(realImagePath);
-                 */
+
                 employee.setPicPath("");
-                employee.setModifiedBy(41);
-                employee.setModifiedDate(new Date() + "");
+                employee.setModifiedBy(LoginFrame.userBean.getEmpId());
+                employee.setModifiedDate(DateFormatter.formatDate(new Date()));
 
                 // How to manage created by and modified by
                 int what = new EmployeeDaoImpl().updateEmployee(employee);
                 if (what == 1) {
-//                    new MessageForm("Success", "Employee updated", "success.png").setVisible(true);
-//                    updateTable();
-//                    resetFields();
+                    new MessageForm("Success", "Employee updated", "success.png").setVisible(true);
+                    updateTable();
+                    resetFields();
                 }
             }
         } else {
-//            new MessageForm("Error", "No record selected", "error.png").setVisible(true);
+            new MessageForm("Error", "No record selected", "error.png").setVisible(true);
         }
     }
 
@@ -1292,12 +1267,12 @@ public class EmployeeEntryFrame extends javax.swing.JFrame {
 
             int status = new EmployeeDaoImpl().deleteEmployee(employee);
             if (status == 1) {
-//                new MessageForm("Success", "Employee deleted", "success.png").setVisible(true);
-//                updateTable();
-//                resetFields();
+                new MessageForm("Success", "Employee deleted", "success.png").setVisible(true);
+                updateTable();
+                resetFields();
             }
         } else {
-//            new MessageForm("Error", "No record selected", "error.png").setVisible(true);
+            new MessageForm("Error", "No record selected", "error.png").setVisible(true);
         }
     }//GEN-LAST:event_deletelblMouseClicked
 
@@ -1368,8 +1343,8 @@ public class EmployeeEntryFrame extends javax.swing.JFrame {
     private void openRecordSelectionFrame() {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-//                EmployeeRecordSelectionFrame frame = new EmployeeRecordSelectionFrame();
-//                frame.setVisible(true);
+                EmployeeRecordSelectionFrame frame = new EmployeeRecordSelectionFrame();
+                frame.setVisible(true);
             }
         });
 
@@ -1478,15 +1453,7 @@ public class EmployeeEntryFrame extends javax.swing.JFrame {
             }
         }
 
-        /*
-        //This is Currently Disabled by the user...
-        //According to the requirment...
-        if (imageFile == null) {
-            profileIcon.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
-            employeeDobField.requestFocus();
-            ok = false;
-        }
-         */
+
         return ok;
 
     }
@@ -1605,17 +1572,17 @@ public class EmployeeEntryFrame extends javax.swing.JFrame {
     }
 
     private void checkPermissions() {
-//        List<PermissionBean> permissions = new RolePermissionDaoImpl().getAssignedPermissions(LoginFrame.userBean.getRole());
-//        for (PermissionBean pb : permissions) {
-//            if (pb.getPermission().equals("Add Employee")) {
-//                addlbl.setVisible(true);
-//            }
-//            if (pb.getPermission().equals("Update Employee")) {
-//                updatelbl.setVisible(true);
-//            }
-//            if (pb.getPermission().equals("Delete Employee")) {
-//                deletelbl.setVisible(true);
-//            }
-//        }
+        List<PermissionBean> permissions = new RolePermissionDaoImpl().getAssignedPermissions(LoginFrame.userBean.getRole());
+        for (PermissionBean pb : permissions) {
+            if (pb.getPermission().equals("add")) {
+                addlbl.setVisible(true);
+            }
+            if (pb.getPermission().equals("update")) {
+                updatelbl.setVisible(true);
+            }
+            if (pb.getPermission().equals("delete")) {
+                deletelbl.setVisible(true);
+            }
+        }
     }
 }

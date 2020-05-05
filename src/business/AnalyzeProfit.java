@@ -526,8 +526,8 @@ public class AnalyzeProfit extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void crossMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_crossMouseClicked
-//      new MainFrame().setVisible(true);
-//      this.dispose();
+      new MainFrame().setVisible(true);
+      this.dispose();
     }//GEN-LAST:event_crossMouseClicked
 
     private void analyzeProfitBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_analyzeProfitBtnMouseClicked

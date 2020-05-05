@@ -73,6 +73,7 @@ public class MainFrame extends javax.swing.JFrame {
         RoleMenuItem = new javax.swing.JMenuItem();
         logoutMenuItem = new javax.swing.JMenuItem();
 
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -218,7 +219,7 @@ public class MainFrame extends javax.swing.JFrame {
         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/background.png"))); // NOI18N
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, 1370, 810));
 
-        jMenu1.setText("File");
+        jMenu1.setText("Open");
 
         studentMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
         studentMenuItem.setText("Student");
@@ -404,8 +405,8 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_shiftlblMouseClicked
 
     private void feeslblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_feeslblMouseClicked
-//        new StudentFeeFrame().setVisible(true);
-//         this.dispose();
+        new StudentFeeFrame().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_feeslblMouseClicked
 
     private void studentMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentMenuItemActionPerformed
@@ -454,8 +455,8 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_CoursesMenuItemActionPerformed
 
     private void FeesMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FeesMenuItemActionPerformed
-//        new StudentFeeFrame().setVisible(true);
-//         this.dispose();
+        new StudentFeeFrame().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_FeesMenuItemActionPerformed
 
     private void PermissionsMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PermissionsMenuItemActionPerformed
@@ -587,51 +588,51 @@ public class MainFrame extends javax.swing.JFrame {
     private void checkPermissions() {
         List<PermissionBean> permissions = new RolePermissionDaoImpl().getAssignedPermissions(LoginFrame.userBean.getRole());
         for (PermissionBean pb : permissions) {
-            if (pb.getPermission().equals("student")) {
+            if (pb.getPermission().equalsIgnoreCase("student")) {
                 studentlbl.setEnabled(true);
                 studentMenuItem.setEnabled(true);
             }
-            if (pb.getPermission().equals("batch")) {
+            if (pb.getPermission().equalsIgnoreCase("batch")) {
                 batchlbl.setEnabled(true);
                 BatchMenuItem.setEnabled(true);
             }
-            if (pb.getPermission().equals("expenses")) {
+            if (pb.getPermission().equalsIgnoreCase("expenses")) {
                 expenselbl.setEnabled(true);
                 ExpensesMenuItem.setEnabled(true);
             }
-            if (pb.getPermission().equals("profit")) {
+            if (pb.getPermission().equalsIgnoreCase("profit")) {
                 profitlbl.setEnabled(true);
                 ProfitMenuItem.setEnabled(true);
             }
-            if (pb.getPermission().equals("employee")) {
+            if (pb.getPermission().equalsIgnoreCase("employee")) {
                 emplbl.setEnabled(true);
                 EmployeeMenuItem.setEnabled(true);
             }
-            if (pb.getPermission().equals("shift")) {
+            if (pb.getPermission().equalsIgnoreCase("shift")) {
                 shiftlbl.setEnabled(true);
                 ShiftMenuItem.setEnabled(true);
             }
-            if (pb.getPermission().equals("expenseType")) {
+            if (pb.getPermission().equalsIgnoreCase("expenseType")) {
                 exptypelbl.setEnabled(true);
                 ExpenseTypeMenuItem.setEnabled(true);
             }
-            if (pb.getPermission().equals("courseAssignment")) {
+            if (pb.getPermission().equalsIgnoreCase("courseAssignment")) {
                 courseassignmentlbl.setEnabled(true);
                 CourseAssignmentMenuItem.setEnabled(true);
             }
-            if (pb.getPermission().equals("course")) {
+            if (pb.getPermission().equalsIgnoreCase("course")) {
                 courselbl.setEnabled(true);
                 CoursesMenuItem.setEnabled(true);
             }
-            if (pb.getPermission().equals("fees")) {
+            if (pb.getPermission().equalsIgnoreCase("fees")) {
                 feeslbl.setEnabled(true);
                 FeesMenuItem.setEnabled(true);
             }
-            if (pb.getPermission().equals("permissions")) {
+            if (pb.getPermission().equalsIgnoreCase("permissions")) {
                 permissionlbl.setEnabled(true);
                 PermissionsMenuItem.setEnabled(true);
             }
-            if (pb.getPermission().equals("role")) {
+            if (pb.getPermission().equalsIgnoreCase("role")) {
                 rolelbl.setEnabled(true);
                 RoleMenuItem.setEnabled(true);
             }

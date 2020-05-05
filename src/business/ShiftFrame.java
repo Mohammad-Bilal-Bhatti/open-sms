@@ -17,6 +17,9 @@ import javax.swing.table.DefaultTableModel;
 import beans.ShiftBean;
 import daoimpl.ShiftDaoImpl;
 import utility.UtilityMethods;
+import beans.PermissionBean;
+import daoimpl.RolePermissionDaoImpl;
+import java.util.List;
 
 /**
  *
@@ -412,8 +415,8 @@ public class ShiftFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_cross_iconMouseEntered
 
     private void cross_iconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cross_iconMouseClicked
-//         new MainFrame().setVisible(true);
-//        this.dispose();
+        new MainFrame().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_cross_iconMouseClicked
 
     private void resetlblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_resetlblMouseClicked
@@ -566,18 +569,18 @@ public class ShiftFrame extends javax.swing.JFrame {
     }
 
     private void checkPermissions() {
-//        List<PermissionBean> permissions = new RolePermissionDaoImpl().getAssignedPermissions(LoginFrame.userBean.getRole());
-//        for (PermissionBean pb : permissions) {
-//            if (pb.getPermission().equals("Add Shift")) {
-//                addlbl.setVisible(true);
-//            }
-//            if (pb.getPermission().equals("Update Shift")) {
-//                updatelbl.setVisible(true);
-//            }
-//            if (pb.getPermission().equals("Delete Shift")) {
-//                deletelbl.setVisible(true);
-//            }
-//        }
+        List<PermissionBean> permissions = new RolePermissionDaoImpl().getAssignedPermissions(LoginFrame.userBean.getRole());
+        for (PermissionBean pb : permissions) {
+            if (pb.getPermission().equals("add")) {
+                addlbl.setVisible(true);
+            }
+            if (pb.getPermission().equals("update")) {
+                updatelbl.setVisible(true);
+            }
+            if (pb.getPermission().equals("delete")) {
+                deletelbl.setVisible(true);
+            }
+        }
     }
 
 }

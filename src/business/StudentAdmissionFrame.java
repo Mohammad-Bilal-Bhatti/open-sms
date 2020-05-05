@@ -5,6 +5,11 @@
  */
 package business;
 
+import beans.PermissionBean;
+import daoimpl.RolePermissionDaoImpl;
+import java.util.List;
+import business.LoginFrame;
+import utility.DateFormatter;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
@@ -768,8 +773,8 @@ public class StudentAdmissionFrame extends javax.swing.JFrame {
 
 
     private void cross_iconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cross_iconMouseClicked
-//        new MainFrame().setVisible(true);
-//        this.dispose();
+        new MainFrame().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_cross_iconMouseClicked
 
     private void guardianNameFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_guardianNameFieldFocusGained
@@ -1019,20 +1024,20 @@ public class StudentAdmissionFrame extends javax.swing.JFrame {
                     String realImagePath = imgHandler.saveImage(imageFile.getAbsolutePath());
                     student.setPicturePath(realImagePath);
 
-                    student.setCreatedBy(41);
-                    student.setCreatedDate(new Date() + "");
+                    student.setCreatedBy(LoginFrame.userBean.getEmpId());
+                    student.setCreatedDate(DateFormatter.formatDate(new Date()));
 
                     // How to manage created by and modified by
                     int check = new StudentDaoImpl().addStudent(student);
                     if (check == 1) {
                         clearFields();
                         JOptionPane.showMessageDialog(this,"Student Added");
-                        //new MessageForm(this, "Success", "Student Added", "success.png").setVisible(true);
+                        new MessageForm("Success", "Student Added", "success.png").setVisible(true);
                     }
                 }
             }
         } else {
-//            new MessageForm("Error", "Record is duplicate", "error.png").setVisible(true);
+            new MessageForm("Error", "Record is duplicate", "error.png").setVisible(true);
         }
     }//GEN-LAST:event_addbtnMouseClicked
 
@@ -1157,14 +1162,14 @@ public class StudentAdmissionFrame extends javax.swing.JFrame {
             String realImagePath = imgHandler.saveImage(imageFile.getAbsolutePath());
             student.setPicturePath(realImagePath);
 
-            student.setModifiedBy(41);
-            student.setModifiedDate(new Date() + "");
+            student.setModifiedBy(LoginFrame.userBean.getEmpId());
+            student.setModifiedDate(DateFormatter.formatDate(new Date()));
 
             // How to manage created by and modified by
             int what = new StudentDaoImpl().updateStudent(student);
             if (what == 1) {
                 JOptionPane.showMessageDialog(this,"Student Updated");
-                //new MessageForm("Success", "Student Updated", "success.png").setVisible(true);
+                new MessageForm("Success", "Student Updated", "success.png").setVisible(true);
                 clearFields();
                 onUpdate = false;
             }
@@ -1176,7 +1181,7 @@ public class StudentAdmissionFrame extends javax.swing.JFrame {
         if (onUpdate) {
             updateStudentRecord();
         } else {
-//            new MessageForm("Error", "Recrod not selected", "error.png").setVisible(true);
+            new MessageForm("Error", "Recrod not selected", "error.png").setVisible(true);
         }
     }//GEN-LAST:event_updatebtnMouseClicked
 
@@ -1398,8 +1403,8 @@ public class StudentAdmissionFrame extends javax.swing.JFrame {
 
     private void showstudentsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showstudentsMouseClicked
         if (!onUpdate) {
-//            new StudentRecordSelectionFrame().setVisible(true);
-//            this.dispose();
+            new StudentRecordSelectionFrame().setVisible(true);
+            this.dispose();
         }
     }//GEN-LAST:event_showstudentsMouseClicked
 
@@ -1410,8 +1415,8 @@ public class StudentAdmissionFrame extends javax.swing.JFrame {
     private void openRecordSelectionFrame() {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-//                StudentRecordSelectionFrame frame = new StudentRecordSelectionFrame();
-//                frame.setVisible(true);
+                StudentRecordSelectionFrame frame = new StudentRecordSelectionFrame();
+                frame.setVisible(true);
             }
         });
 
@@ -1476,7 +1481,7 @@ public class StudentAdmissionFrame extends javax.swing.JFrame {
         interBoardCombo.setSelectedIndex(0);
         interMarksField.setText(interObtMarksTip);
         interSeatNumberField.setText(interSeatNoTip);
-        studentImageIcon.setIcon(new ImageIcon(getClass().getResource("/staracademy/com/images/profile_img.png")));
+        studentImageIcon.setIcon(new ImageIcon(getClass().getResource("/images/profile_img.png")));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1544,14 +1549,14 @@ public class StudentAdmissionFrame extends javax.swing.JFrame {
     }
 
     private void checkPermissions() {
-//        List<PermissionBean> permissions = new RolePermissionDaoImpl().getAssignedPermissions(LoginFrame.userBean.getRole());
-//        for (PermissionBean pb : permissions) {
-//            if (pb.getPermission().equals("Add Student")) {
-//                addbtn.setVisible(true);
-//            }
-//            if (pb.getPermission().equals("Update Student")) {
-//                updatebtn.setVisible(true);
-//            }
-//        }
+        List<PermissionBean> permissions = new RolePermissionDaoImpl().getAssignedPermissions(LoginFrame.userBean.getRole());
+        for (PermissionBean pb : permissions) {
+            if (pb.getPermission().equals("add")) {
+                addbtn.setVisible(true);
+            }
+            if (pb.getPermission().equals("update")) {
+                updatebtn.setVisible(true);
+            }
+        }
     }
 }

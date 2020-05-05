@@ -37,7 +37,7 @@ public class ImagesHandler {
         this.imgDir = imgDir;
         File dir = new File(imgDir);
         if (!dir.exists()) {
-            dir.mkdir();
+            dir.mkdirs();
             this.hide(dir.getAbsolutePath());
         }
     }

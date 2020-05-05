@@ -5,6 +5,9 @@
  */
 package business;
 
+import beans.PermissionBean;
+import daoimpl.RolePermissionDaoImpl;
+import java.util.List;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
@@ -54,9 +57,9 @@ public class StudentRecordSelectionFrame extends javax.swing.JFrame {
         table = new javax.swing.JTable();
         updatebtn = new javax.swing.JLabel();
         deletebtn = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        searchLabel = new javax.swing.JLabel();
         crossBtn = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        studentRecordHeader = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -115,7 +118,7 @@ public class StudentRecordSelectionFrame extends javax.swing.JFrame {
 
         tablePanel.add(tableScorllPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 1350, 740));
 
-        updatebtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/staracademy/com/images/updatebtn.png"))); // NOI18N
+        updatebtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/updatebtn.png"))); // NOI18N
         updatebtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 updatebtnMouseClicked(evt);
@@ -124,9 +127,9 @@ public class StudentRecordSelectionFrame extends javax.swing.JFrame {
                 updatebtnMouseEntered(evt);
             }
         });
-        tablePanel.add(updatebtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 30, 170, 50));
+        tablePanel.add(updatebtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 30, 170, 50));
 
-        deletebtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/staracademy/com/images/deletebtn.png"))); // NOI18N
+        deletebtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/deletebtn.png"))); // NOI18N
         deletebtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 deletebtnMouseClicked(evt);
@@ -137,9 +140,9 @@ public class StudentRecordSelectionFrame extends javax.swing.JFrame {
         });
         tablePanel.add(deletebtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(1190, 30, 170, 50));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel2.setText("Search");
-        tablePanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 60, 40));
+        searchLabel.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        searchLabel.setText("Search");
+        tablePanel.add(searchLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 60, 40));
 
         getContentPane().add(tablePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 1370, 830));
 
@@ -157,12 +160,12 @@ public class StudentRecordSelectionFrame extends javax.swing.JFrame {
         });
         getContentPane().add(crossBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(1340, 20, 20, 30));
 
-        jLabel1.setBackground(new java.awt.Color(0, 102, 0));
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("                                                                                   STUDENT RECORD");
-        jLabel1.setOpaque(true);
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 70));
+        studentRecordHeader.setBackground(new java.awt.Color(0, 102, 0));
+        studentRecordHeader.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        studentRecordHeader.setForeground(new java.awt.Color(255, 255, 255));
+        studentRecordHeader.setText("                                                                                   STUDENT RECORD");
+        studentRecordHeader.setOpaque(true);
+        getContentPane().add(studentRecordHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 70));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -348,9 +351,9 @@ public class StudentRecordSelectionFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel crossBtn;
     private javax.swing.JLabel deletebtn;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField searchField;
+    private javax.swing.JLabel searchLabel;
+    private javax.swing.JLabel studentRecordHeader;
     private javax.swing.JTable table;
     private javax.swing.JPanel tablePanel;
     private javax.swing.JScrollPane tableScorllPanel;
@@ -358,14 +361,14 @@ public class StudentRecordSelectionFrame extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void checkPermissions() {
-//      List<PermissionBean> permissions = new RolePermissionDaoImpl().getAssignedPermissions(LoginFrame.userBean.getRole());
-//        for(PermissionBean pb:permissions){
-//            if(pb.getPermission().equals("Delete Student")){
-//                deletebtn.setVisible(true);
-//            }
-//            if(pb.getPermission().equals("Update Student")){
-//                updatebtn.setVisible(true);
-//            }
-//        }
+      List<PermissionBean> permissions = new RolePermissionDaoImpl().getAssignedPermissions(LoginFrame.userBean.getRole());
+        for(PermissionBean pb:permissions){
+            if(pb.getPermission().equals("delete")){
+                deletebtn.setVisible(true);
+            }
+            if(pb.getPermission().equals("update")){
+                updatebtn.setVisible(true);
+            }
+        }
     }
 }

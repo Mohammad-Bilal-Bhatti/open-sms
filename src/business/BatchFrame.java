@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 package business;
-
+import beans.PermissionBean;
+import daoimpl.RolePermissionDaoImpl;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Toolkit;
@@ -12,12 +13,12 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import beans.BatchBean;
 import beans.EmployeeBean;
-import beans.PermissionBean;
 import dao.BatchDao;
 import daoimpl.BatchDaoImpl;
-import daoimpl.RolePermissionDaoImpl;
+import java.util.Date;
 import utility.CurrentDate;
 import utility.UtilityMethods;
+import utility.DateFormatter;
 
 /**
  *
@@ -33,7 +34,7 @@ public class BatchFrame extends javax.swing.JFrame {
 
     public BatchFrame() {
         initComponents();
-//        this.emp = LoginFrame.userBean;
+        this.emp = LoginFrame.userBean;
         Toolkit t = Toolkit.getDefaultToolkit();
         this.setSize(t.getScreenSize().width, t.getScreenSize().height);
         this.getContentPane().setBackground(Color.white);
@@ -247,8 +248,8 @@ public class BatchFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void closeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeMouseClicked
-//        new MainFrame().setVisible(true);
-//        this.dispose();
+        new MainFrame().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_closeMouseClicked
 
     private void batchtxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_batchtxtFocusGained
@@ -269,7 +270,7 @@ public class BatchFrame extends javax.swing.JFrame {
             if (!batchtxt.getText().isEmpty() && !batchtxt.getText().equalsIgnoreCase("Enter batch name here")) {
                 batch.setBatchName(batchtxt.getText());
                 batch.setCreatedBy(emp.getEmpId());
-                batch.setCreatedDate(CurrentDate.getCurrentDate() + "");
+                batch.setCreatedDate(DateFormatter.formatDate(new Date()));
                 if (batchDao.addBatch(batch) == 1) {
                     populateBatchTable();
                     batchtxt.setText("Enter batch name here");
@@ -382,8 +383,6 @@ public class BatchFrame extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        EmployeeBean emp = new EmployeeBean();
-        emp.setEmpId(1);
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new BatchFrame().setVisible(true);
@@ -415,17 +414,17 @@ public class BatchFrame extends javax.swing.JFrame {
     }
 
     private void checkPermissions() {
-//        List<PermissionBean> permissions = new RolePermissionDaoImpl().getAssignedPermissions(LoginFrame.userBean.getRole());
-//        for (PermissionBean pb : permissions) {
-//            if (pb.getPermission().equals("Add Batch")) {
-//                addlbl.setVisible(true);
-//            }
-//            if (pb.getPermission().equals("Update Batch")) {
-//                updatelbl.setVisible(true);
-//            }
-//            if (pb.getPermission().equals("Delete Batch")) {
-//                deletelbl.setVisible(true);
-//            }
-//        }
+        List<PermissionBean> permissions = new RolePermissionDaoImpl().getAssignedPermissions(LoginFrame.userBean.getRole());
+        for (PermissionBean pb : permissions) {
+            if (pb.getPermission().equals("add")) {
+                addlbl.setVisible(true);
+            }
+            if (pb.getPermission().equals("update")) {
+                updatelbl.setVisible(true);
+            }
+            if (pb.getPermission().equals("delete")) {
+                deletelbl.setVisible(true);
+            }
+        }
     }
 }

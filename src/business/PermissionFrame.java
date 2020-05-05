@@ -180,8 +180,8 @@ public class PermissionFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cutlblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cutlblMouseClicked
-//         new MainFrame().setVisible(true);
-//        this.dispose();
+        new MainFrame().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_cutlblMouseClicked
 
     private void rolecomboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rolecomboItemStateChanged
@@ -343,7 +343,7 @@ public class PermissionFrame extends javax.swing.JFrame {
     private void checkPermissions() {
         List<PermissionBean> permissions = new RolePermissionDaoImpl().getAssignedPermissions(LoginFrame.userBean.getRole());
         for (PermissionBean pb : permissions) {
-            if (pb.getPermission().equals("Update Permissions")) {
+            if (pb.getPermission().equals("update")) {
                 updatelbl.setVisible(true);
             }
         }

@@ -4,7 +4,7 @@ This project is specifically designed and developed for managing small to medium
 
 This project was developed back in Nov, 2018 with the mutual contribution and with intention that it will be our first real-world project, and will be deployed in institure of Gambat, Pakistan. This project was completed in Middle of Feb, 2019 and further forwarded to deployment.
 
-> Note: The Source in Now Completely Uploaded 😁. TODO: Bugs needs to resolve only...
+> Note: The Source in Now Completely Uploaded 😁.
 
 ## How to Run
 
@@ -12,7 +12,16 @@ This project was developed back in Nov, 2018 with the mutual contribution and wi
 - Open project in Netbeans 📦.
 - Build and run the project 😊.
 
-> Note: Import the db schema present in /schemas directory using sqlite client: DB-Browser 
+Default: Username: `admin` Password: `root`
+
+It is recommended to use `db.sqlite.init.sql` schema for proper use.
+
+> Note: Import the db schema present in `/schemas` directory using sqlite client: DB-Browser into `/db.sqlite` 
+
+| Symbol        | Meaning           |
+| ------------- |:-------------|
+| `/`      | project root directory |
+
 
 ## Technologies Used
 

@@ -18,6 +18,12 @@ import javax.swing.table.DefaultTableModel;
 import beans.StudentBean;
 import daoimpl.StudentDaoImpl;
 import utility.UtilityMethods;
+import business.LoginFrame;
+import utility.DateFormatter;
+import utility.ImagesHandler;
+import config.Config;
+
+
 
 /**
  *
@@ -275,10 +281,14 @@ public class StudentRecordSelectionFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         int selectedRow = table.getSelectedRow();
         if (selectedRow >= 0) {
-            StudentBean student = new StudentBean();
-            student.setStudentId(new Integer(table.getValueAt(selectedRow, 0).toString()));
-            student.setModifiedBy(41);
-            student.setModifiedDate(new Date() + "");
+            int sid = new Integer(table.getValueAt(selectedRow, 0).toString());
+            StudentBean student = new StudentDaoImpl().getStudentById(sid);
+
+            student.setModifiedBy(LoginFrame.userBean.getEmpId());
+            student.setModifiedDate(DateFormatter.formatDate(new Date()));
+      
+            ImagesHandler imageHandler = new ImagesHandler(Config.IMG_DIR);
+            imageHandler.delete(student.getPicturePath());
 
             int status = new StudentDaoImpl().deleteStudent(student);
             if (status == 1) {

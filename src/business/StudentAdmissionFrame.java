@@ -9,7 +9,6 @@ import beans.PermissionBean;
 import daoimpl.RolePermissionDaoImpl;
 import java.util.List;
 import business.LoginFrame;
-import utility.DateFormatter;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
@@ -1021,7 +1020,7 @@ public class StudentAdmissionFrame extends javax.swing.JFrame {
 
                     ImagesHandler imgHandler = new ImagesHandler(this.studentImgDir);
                     //Real Path where the image is currently saved
-                    String realImagePath = imgHandler.saveImage(imageFile.getAbsolutePath());
+                    String realImagePath = imgHandler.save(imageFile.getAbsolutePath(), student.getStudentName() + ".png");
                     student.setPicturePath(realImagePath);
 
                     student.setCreatedBy(LoginFrame.userBean.getEmpId());
@@ -1031,7 +1030,6 @@ public class StudentAdmissionFrame extends javax.swing.JFrame {
                     int check = new StudentDaoImpl().addStudent(student);
                     if (check == 1) {
                         clearFields();
-                        JOptionPane.showMessageDialog(this,"Student Added");
                         new MessageForm("Success", "Student Added", "success.png").setVisible(true);
                     }
                 }
@@ -1155,11 +1153,11 @@ public class StudentAdmissionFrame extends javax.swing.JFrame {
             //Delete the previous image file...
             //If User does not change the picture...
             if (!prevImageFile.getAbsolutePath().equals(imageFile.getAbsolutePath())) {
-                imgHandler.deleteFile(prevImageFile.getAbsolutePath());
+                imgHandler.delete(prevImageFile.getAbsolutePath());
             }
 
             //Real Path where the image is currently saved
-            String realImagePath = imgHandler.saveImage(imageFile.getAbsolutePath());
+            String realImagePath = imgHandler.save(imageFile.getAbsolutePath(),student.getStudentName() + ".png");
             student.setPicturePath(realImagePath);
 
             student.setModifiedBy(LoginFrame.userBean.getEmpId());
